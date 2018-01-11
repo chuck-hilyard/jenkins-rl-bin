@@ -7,6 +7,7 @@ class Main():
   def __init__(self):
     print("in Main()")
     cmr = cmr_approval_gate.CmrApprovalGate()
+    cmr.output()
 
 
 if __name__ == '__main__':
