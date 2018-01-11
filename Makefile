@@ -1,6 +1,6 @@
 
 default :
-	python3 cmr/cmr-approval-gate
+	python3 cmr_approval_gate/main.py
 
 tests :
 	python3 -m unittest discover
