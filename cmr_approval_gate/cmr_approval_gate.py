@@ -4,6 +4,7 @@ import os
 class CmrApprovalGate():
 
   def __init__(self):
+    print("in CmrApprovalGate()")
     self.build_display_name = os.environ['BUILD_DISPLAY_NAME']
     self.build_number       = os.environ['BUILD_NUMBER']
     self.build_url          = os.environ['BUILD_URL']
