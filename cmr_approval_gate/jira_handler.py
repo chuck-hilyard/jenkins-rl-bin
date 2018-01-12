@@ -16,6 +16,6 @@ class JiraHandler():
     issue = jira_conn.search_issues(JQL)
     print("issue: ", issue)
 
-  def verify_approved_cmr_description(self, jira_conn, cmr_number):
+  def update_approved_cmr_comment(self, jira_conn, cmr_number):
     cmr = jira_conn.issue(cmr_number)
 

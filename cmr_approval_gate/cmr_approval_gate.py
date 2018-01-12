@@ -6,12 +6,13 @@ class CmrApprovalGate():
   def __init__(self):
     self.build_display_name = os.environ['BUILD_DISPLAY_NAME']
     self.build_number       = os.environ['BUILD_NUMBER']
+    self.build_url          = os.environ['BUILD_URL']
     self.run_display_url    = os.environ['RUN_DISPLAY_URL']
     self.job_name           = os.environ['JOB_NAME']
     self.jira_cmr           = os.environ['JIRA_CMR']
 
-  def get_build_number(self):
-    return self.build_number
+  def get_build_url(self):
+    return self.build_url
 
   def get_cmr_number(self):
     return self.jira_cmr
