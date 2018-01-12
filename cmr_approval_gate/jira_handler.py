@@ -12,6 +12,10 @@ class JiraHandler():
     return JIRA(options)
 
   def find_approved_cmr(self, jira_conn, cmr_number):
-    JQL = "project = CMR AND status = CAB-APPROVED AND key = {0}".format(cmr_number)
+    JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
     issue = jira_conn.search_issues(JQL)
     print("issue: ", issue)
+
+  def verify_approved_cmr_description(self, jira_conn, cmr_number):
+    cmr = jira_conn.issue(cmr_number)
+

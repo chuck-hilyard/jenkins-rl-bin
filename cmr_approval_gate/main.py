@@ -10,6 +10,7 @@ class Main():
     print("in Main()")
     cmr = cmr_approval_gate.CmrApprovalGate()
     cmr_number = cmr.get_cmr_number()
+    cmr.output()
 
     jira = jira_handler.JiraHandler()
     jira_conn = jira.create_connection_handler()
