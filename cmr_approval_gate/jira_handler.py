@@ -6,7 +6,7 @@ class JiraHandler():
   def __init__(self):
     print("in JiraHandler()")
 
-  def create_connection_handler(self, username, password):
+  def create_connection(self, username, password):
     print("connecting to https://tickets.reachlocal.com as {0}".format(username))
     options = { 'server': 'https://tickets.reachlocal.com'}
     try:

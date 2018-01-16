@@ -13,12 +13,13 @@ class Main():
     cmr_number = cmr.get_cmr_number()
     build_url = cmr.get_build_url()
 
-    jira = jira_handler.JiraHandler()
     credentials = credentials_handler.CredentialsHandler()
     username = "chuck.hilyard"
     #password = credentials.get_password()
     password = "test"
-    jira_conn = jira.create_connection_handler(username, password)
+
+    jira = jira_handler.JiraHandler()
+    jira_conn = jira.create_connection(username, password)
     jira.find_approved_cmr(jira_conn, cmr_number)
     jira.add_comment_to_approved_cmr(build_url)
 
