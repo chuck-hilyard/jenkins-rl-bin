@@ -1,7 +1,7 @@
 
 import boto3
 
-class CredentialHandler():
+class CredentialsHandler():
   def __init__():
     print("CredentialHandler init")
 
