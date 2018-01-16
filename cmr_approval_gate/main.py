@@ -13,7 +13,9 @@ class Main():
     build_url = cmr.get_build_url()
 
     jira = jira_handler.JiraHandler()
-    jira_conn = jira.create_connection_handler()
+    username = "chuck.hilyard"
+    password = CredentialHandler.get_password()
+    jira_conn = jira.create_connection_handler(username, password)
     jira.find_approved_cmr(jira_conn, cmr_number)
     jira.add_comment_to_approved_cmr(build_url)
 
