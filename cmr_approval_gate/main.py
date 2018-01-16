@@ -16,7 +16,8 @@ class Main():
     jira = jira_handler.JiraHandler()
     credentials = credentials_handler.CredentialsHandler()
     username = "chuck.hilyard"
-    password = credentials.get_password()
+    #password = credentials.get_password()
+    password = "test"
     jira_conn = jira.create_connection_handler(username, password)
     jira.find_approved_cmr(jira_conn, cmr_number)
     jira.add_comment_to_approved_cmr(build_url)

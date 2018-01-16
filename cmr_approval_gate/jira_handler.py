@@ -7,11 +7,13 @@ class JiraHandler():
     print("in JiraHandler()")
 
   def create_connection_handler(self, username, password):
-    print("connecting to https://tickets.reachlocal.com" as {0}.format(username))
+    print("connecting to https://tickets.reachlocal.com as {0}".format(username))
     options = { 'server': 'https://tickets.reachlocal.com'}
     try:
       jira_conn_authd = JIRA(options, basic_auth=(username, password))
-    return jira_conn_authd
+      return jira_conn_authd
+    except JiraConnError:
+      print("connection to jira failed")
 
   def find_approved_cmr(self, jira_conn, cmr_number):
     JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
