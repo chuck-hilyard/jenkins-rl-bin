@@ -16,7 +16,7 @@ class Main():
     credentials = credentials_handler.CredentialsHandler()
     username = 'chuck.hilyard'
     #password = credentials.get_password()
-    password = 'Tinyleaf44'
+    password = 'blah'
 
     jira = jira_handler.JiraHandler()
     jira_conn = jira.create_connection(username, password)
