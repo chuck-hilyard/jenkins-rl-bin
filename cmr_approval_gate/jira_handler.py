@@ -8,18 +8,18 @@ class JiraHandler():
     print("in JiraHandler()")
 
   def create_connection(self, username, password):
-    print("connecting to https://tickets.reachlocal.com as {0}".format(username))
+    print("connecting to https://tickets.reachlocal.com")
     options = { 'server': 'https://tickets.reachlocal.com'}
     try:
-      jira_conn_authd = JIRA(options, basic_auth=(username, password))
+      #if we decide to add comments to the tickets we'll need to auth
+      #jira_conn_authd = JIRA(options, basic_auth=(username, password))
+      jira_conn_authd = JIRA(options)
       return jira_conn_authd
     except:
       print("unexpected error, connection to jira failed")
 
   def find_approved_cmr(self, jira_conn, cmr_number):
-    #JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
-    #testing
-    JQL = "project = CMR AND status = RE-OPEN AND key = {0}".format(cmr_number)
+    JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
     issue = jira_conn.search_issues(JQL)
     if len(issue) > 0:
       return issue
@@ -27,8 +27,6 @@ class JiraHandler():
       exit(1)
 
   def match_build_string_from_cmr(self, jira_conn, cmr_number, Job, BUILD_NUMBER):
-    # BUILD: https://jenkins.media.dev.usa.reachlocalservices.com/view/madmin-client/job/madmin-client-build/68/
-    # regex: ^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/%s\/%s % Job, BUILD_NUMBER
     print("matching CMR to Jenkins BUILD")
     issue = jira_conn.issue(cmr_number)
     description = issue.fields.description
@@ -38,7 +36,6 @@ class JiraHandler():
       exit(1)
 
   def add_comment_to_approved_cmr(self, jira_conn, cmr_number, deploy_url):
-    # modify deploy_url to reflect the jenkins VIP DNS name
     modified_deploy_url = re.sub('^http:\/\/[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}\:8080', 'https://jenkins.media.dev.usa.reachlocalservices.com', deploy_url)
     print("adding comment to {0}".format(cmr_number))
     jira_conn.add_comment('CMR-2926', "DEPLOY URL: {0}".format(modified_deploy_url))

@@ -15,16 +15,17 @@ class Main():
     BUILD_NUMBER = cmr.build_number
     deploy_url = cmr.get_deploy_url()
 
-    credentials = credentials_handler.CredentialsHandler()
-    username = 'chuck.hilyard'
+    # future project (if we decide to add comments to the tickets)
+    #credentials = credentials_handler.CredentialsHandler()
     #password = credentials.get_password()
-    password = ''
+    username = 'anonymous'
+    password = 'anonymous'
 
     jira = jira_handler.JiraHandler()
     jira_conn = jira.create_connection(username, password)
     jira.find_approved_cmr(jira_conn, cmr_number)
     jira.match_build_string_from_cmr(jira_conn, cmr_number, Job, BUILD_NUMBER)
-    jira.add_comment_to_approved_cmr(jira_conn, cmr_number, deploy_url)
+    #jira.add_comment_to_approved_cmr(jira_conn, cmr_number, deploy_url)
 
 
 if __name__ == '__main__':
