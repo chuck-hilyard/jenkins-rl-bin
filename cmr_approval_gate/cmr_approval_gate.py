@@ -6,9 +6,8 @@ import xml.etree.ElementTree as et
 class CmrApprovalGate():
 
   def __init__(self):
-    print("in CmrApprovalGate()")
+    print("CmrApprovalGate()")
     self.build_display_name = os.environ['BUILD_DISPLAY_NAME']
-    #self.build_number       = os.environ['BuildSelection']
     self.build_number_xml   = et.fromstring(os.environ['BuildSelection'])
     self.build_number       = self.build_number_xml[0].text
     self.deploy_url         = os.environ['BUILD_URL']

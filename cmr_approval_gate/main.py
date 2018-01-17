@@ -8,7 +8,7 @@ import credentials_handler
 class Main():
 
   def __init__(self):
-    print("in Main()")
+    print("Main()")
     cmr = cmr_approval_gate.CmrApprovalGate()
     cmr_number = cmr.get_cmr_number()
     Job = cmr.job
