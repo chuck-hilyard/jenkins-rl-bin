@@ -19,11 +19,13 @@ class JiraHandler():
       print("unexpected error, connection to jira failed")
 
   def find_approved_cmr(self, jira_conn, cmr_number):
+    print("searching CMRs...")
     JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
     issue = jira_conn.search_issues(JQL)
     if len(issue) > 0:
       return issue
     else:
+      print("matching CMR not found, exiting")
       exit(1)
 
   def match_build_string_from_cmr(self, jira_conn, cmr_number, Job, BUILD_NUMBER):
