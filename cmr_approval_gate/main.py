@@ -13,6 +13,7 @@ class Main():
     cmr_number = cmr.get_cmr_number()
     Job = cmr.job
     BUILD_NUMBER = cmr.build_number
+    cmr.output()
     deploy_url = cmr.get_deploy_url()
 
     # future project (if we decide to add comments to the tickets)

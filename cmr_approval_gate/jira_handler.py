@@ -1,4 +1,5 @@
 
+
 import re
 from jira import JIRA
 
@@ -19,10 +20,12 @@ class JiraHandler():
       print("unexpected error, connection to jira failed")
 
   def find_approved_cmr(self, jira_conn, cmr_number):
-    print("searching CMRs...")
-    JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
+    print("searching JIRA for {0}...".format(cmr_number))
+    JQL = "project = CMR AND status = RE-OPEN AND key = {0} AND component = Media".format(cmr_number)
     issue = jira_conn.search_issues(JQL)
+    print("issue: ", issue)
     if len(issue) > 0:
+      print("found CMR!")
       return issue
     else:
       print("matching CMR not found, exiting")
@@ -32,7 +35,10 @@ class JiraHandler():
     print("matching CMR to Jenkins BUILD")
     issue = jira_conn.issue(cmr_number)
     description = issue.fields.description
-    match = re.search('^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/%s\/%s % Job, BUILD_NUMBER', description)
+    print("description: ", description)
+    search_string = r"^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/{0}\/{1}".format(Job, BUILD_NUMBER)
+    print("search string", search_string)
+    match = re.search(search_string, description)
     if match is None:
       print("no matching BUILD: string in {0}".format(cmr_number))
       exit(1)
