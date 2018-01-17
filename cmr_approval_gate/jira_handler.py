@@ -38,7 +38,7 @@ class JiraHandler():
     match = re.search(search_string, description)
     if match is None:
       print("no matching BUILD: string found in {0}".format(cmr_number))
-      print("not proceeding...")
+      print("quitting...")
       exit(1)
 
   def add_comment_to_approved_cmr(self, jira_conn, cmr_number, deploy_url):
