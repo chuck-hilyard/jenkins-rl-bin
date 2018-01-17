@@ -13,8 +13,8 @@ class JiraHandler():
     try:
       jira_conn_authd = JIRA(options, basic_auth=(username, password))
       return jira_conn_authd
-    except JiraConnError:
-      print("connection to jira failed")
+    except:
+      print("unexpected error, connection to jira failed")
 
   def find_approved_cmr(self, jira_conn, cmr_number):
     #JQL = "project = CMR AND status = CAB-APPROVED AND key = {0} AND component = Media".format(cmr_number)
@@ -26,23 +26,19 @@ class JiraHandler():
     else:
       exit(1)
 
-  def match_build_string_from_cmr(self, jira_conn, build_string):
-    # this is a matching build string
-    # https://jenkins.media.dev.usa.reachlocalservices.com/view/madmin-client/job/madmin-client-build/68/
-    # https://*/view/*/job/$Job/$BUILD_NUMBER
-    # regex: ^https:\/\/\S*\/view\/\S*\/job\/%s\/%s % Job, BUILD_NUMBER
-    print("matching CMR to Jenkins deploy")
-    description = jira_conn.issue.fields.comment.comments
-    print("test: ", description)
-
+  def match_build_string_from_cmr(self, jira_conn, cmr_number, Job, BUILD_NUMBER):
+    # BUILD: https://jenkins.media.dev.usa.reachlocalservices.com/view/madmin-client/job/madmin-client-build/68/
+    # regex: ^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/%s\/%s % Job, BUILD_NUMBER
+    print("matching CMR to Jenkins BUILD")
+    issue = jira_conn.issue(cmr_number)
+    description = issue.fields.description
+    match = re.search('^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/%s\/%s % Job, BUILD_NUMBER', description)
+    if match is None:
+      print("no matching BUILD: string in {0}".format(cmr_number))
+      exit(1)
 
   def add_comment_to_approved_cmr(self, jira_conn, cmr_number, deploy_url):
     # modify deploy_url to reflect the jenkins VIP DNS name
-    # modified_deploy_url = regex blah blah
-    # switch this http://10.233.72.141:8080/job/madmin-client-deploy-dev-usa/62/
-    # to
-    # https://jenkins.media.dev.usa.reachlocalservices.com/view/madmin-client/job/madmin-client-deploy-dev-usa/62/
-    # regex: ^http:\/\/[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}\:8080
     modified_deploy_url = re.sub('^http:\/\/[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}\:8080', 'https://jenkins.media.dev.usa.reachlocalservices.com', deploy_url)
     print("adding comment to {0}".format(cmr_number))
     jira_conn.add_comment('CMR-2926', "DEPLOY URL: {0}".format(modified_deploy_url))

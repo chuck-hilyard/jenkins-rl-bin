@@ -11,6 +11,7 @@ class CmrApprovalGate():
     self.run_display_url    = os.environ['RUN_DISPLAY_URL']
     self.job_name           = os.environ['JOB_NAME']
     self.jira_cmr           = os.environ['JIRA_CMR']
+    self.job                = os.environ['Job']
 
   def get_deploy_url(self):
     return self.deploy_url

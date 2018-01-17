@@ -11,16 +11,19 @@ class Main():
     print("in Main()")
     cmr = cmr_approval_gate.CmrApprovalGate()
     cmr_number = cmr.get_cmr_number()
+    Job = cmr.job
+    BUILD_NUMBER = cmr.build_number
     deploy_url = cmr.get_deploy_url()
 
     credentials = credentials_handler.CredentialsHandler()
     username = 'chuck.hilyard'
     #password = credentials.get_password()
-    password = 'blah'
+    password = ''
 
     jira = jira_handler.JiraHandler()
     jira_conn = jira.create_connection(username, password)
     jira.find_approved_cmr(jira_conn, cmr_number)
+    jira.match_build_string_from_cmr(jira_conn, cmr_number, Job, BUILD_NUMBER)
     jira.add_comment_to_approved_cmr(jira_conn, cmr_number, deploy_url)
 
 
