@@ -1,10 +1,10 @@
 
 default :
-	python3 cmr_approval_gate/main.py
+	python3 main.py
 
 tests :
 	python3 -m unittest discover
 
-clean :
+clean_cmr_approval :
 	rm -f test.txt
 
