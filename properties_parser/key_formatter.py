@@ -9,7 +9,6 @@ class KeyFormatter():
   def format_keys(self, raw_kv):
     raw_key_dictionary = {}
     for raw_key,raw_value in raw_kv.items():
-      print("stripping leading edge from raw key: {0}={1}".format(raw_key,raw_value))
       regex_string = "^tf_managed\/media-gateway\/"
       new_key = re.sub(regex_string, '', raw_key)
       raw_key_dictionary[new_key] = raw_value

@@ -10,7 +10,6 @@ class PropertiesWriter():
     try:
       prop_file = open('application.properties', 'w')
       for key,value in all_kv.items():
-        print("writing {0}={1}".format(key, value))
         line = "{0}={1}\n".format(key, value)
         prop_file.write(line)
     except:
