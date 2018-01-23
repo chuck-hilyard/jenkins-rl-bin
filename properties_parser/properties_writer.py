@@ -16,3 +16,5 @@ class PropertiesWriter():
     except:
       print("unexpected error writing to ./application.properties")
       raise
+    else:
+      prop_file.close()
