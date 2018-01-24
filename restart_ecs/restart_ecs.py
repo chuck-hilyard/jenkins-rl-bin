@@ -5,9 +5,13 @@ import re
 import os
 
 class RestartEcs():
+
+  def __init__(self):
+    print("RestartEcs()")
+
   # the hammer
   def restart_ecs_containers(self, clustername, containerids, region):
-    client = boto3.client('ecs')
+    client = boto3.client('ecs', region_name=region)
     tasks = client.list_tasks(cluster=clustername)['taskArns']
     print("TASKS: ", tasks)
     for taskid in tasks:
@@ -15,7 +19,7 @@ class RestartEcs():
       print("response: ", response)
 
   def get_ecs_containers(self, clustername, region):
-    client = boto3.client('ecs')
+    client = boto3.client('ecs', region_name=region)
     containers = client.list_container_instances(cluster=clustername)['containerInstanceArns']
     if not containers:
       raise Exception("no containers found in ecs cluster {0}".format(clustername))
