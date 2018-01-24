@@ -24,7 +24,7 @@ def get_ecs_containers(clustername):
 
 
 def main(*args):
-  clustername = os.environ['JENKINS_JOB_NAME']
+  clustername = os.environ['JOB_NAME']
   containerids = get_ecs_containers(clustername)
   restart_ecs_containers(clustername, containerids)
   #return response
