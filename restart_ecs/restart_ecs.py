@@ -4,6 +4,7 @@ import boto3
 import json
 import re
 import os
+import consul_handler
 
 # the hammer
 def restart_ecs_containers(clustername, containerids):
