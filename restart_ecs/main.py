@@ -2,6 +2,7 @@
 import os
 import sys
 import restart_ecs
+import re
 
 
 class Main():
@@ -10,7 +11,7 @@ class Main():
     print("Main()")
 
   def run(self, region):
-    clustername = os.environ['JOB_NAME']
+    clustername = re.sub('deploy-', '', os.environ['JOB_NAME'])
     #ch = consul_handler.ConsulHandler()
     #region = ch.get_key("REGION")
     ecs = restart_ecs.RestartEcs()
