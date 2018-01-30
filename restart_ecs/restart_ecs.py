@@ -10,16 +10,18 @@ class RestartEcs():
     print("RestartEcs()")
 
   # the hammer
-  def restart_ecs_containers(self, clustername, containerids, region):
-    client = boto3.client('ecs', region_name=region)
+  def restart_ecs_containers(self, clustername, containerids, region, profile):
+    session = boto3.Session(profile_name=profile)
+    client = session.client('ecs', region_name=region)
     tasks = client.list_tasks(cluster=clustername)['taskArns']
     print("TASKS: ", tasks)
     for taskid in tasks:
       response = client.stop_task(cluster=clustername, task=taskid, reason="deploying software")
       print("response: ", response)
 
-  def get_ecs_containers(self, clustername, region):
-    client = boto3.client('ecs', region_name=region)
+  def get_ecs_containers(self, clustername, region, profile):
+    session = boto3.Session(profile_name=profile)
+    client = session.client('ecs', region_name=region)
     containers = client.list_container_instances(cluster=clustername)['containerInstanceArns']
     if not containers:
       raise Exception("no containers found in ecs cluster {0}".format(clustername))
