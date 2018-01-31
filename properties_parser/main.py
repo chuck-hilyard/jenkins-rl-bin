@@ -4,6 +4,7 @@ import key_formatter
 import credentials_handler
 import consul_handler
 import properties_writer
+import sys
 
 
 class Main():
@@ -11,8 +12,8 @@ class Main():
   def __init__(self):
     print("Main()")
 
-  def run(self):
-    ch = consul_handler.ConsulHandler()
+  def run(self, region, profile):
+    ch = consul_handler.ConsulHandler(profile)
     raw_kv = ch.get_all_keys()
 
     pf = key_formatter.KeyFormatter()
@@ -29,4 +30,4 @@ class Main():
 
 if __name__ == '__main__':
   main = Main()
-  main.run()
+  main.run(sys.argv[1], sys.argv[2])
