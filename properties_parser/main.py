@@ -20,7 +20,7 @@ class Main():
     raw_kv = ch.get_all_keys(project)
 
     pf = key_formatter.KeyFormatter()
-    formatted_keys = pf.format_keys(raw_kv)
+    formatted_keys = pf.format_keys(raw_kv, project)
 
     pw = properties_writer.PropertiesWriter()
     pw.create_properties_file(formatted_keys)
