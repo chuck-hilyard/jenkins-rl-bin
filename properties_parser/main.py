@@ -5,6 +5,8 @@ import credentials_handler
 import consul_handler
 import properties_writer
 import sys
+import re
+import os
 
 
 class Main():
@@ -14,7 +16,8 @@ class Main():
 
   def run(self, region, profile):
     ch = consul_handler.ConsulHandler(profile)
-    raw_kv = ch.get_all_keys()
+    project = re.sub('-build', '', os.environ['Job'])
+    raw_kv = ch.get_all_keys(project)
 
     pf = key_formatter.KeyFormatter()
     formatted_keys = pf.format_keys(raw_kv)

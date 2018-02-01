@@ -17,11 +17,16 @@ class ConsulHandler():
       }
     self.conn = consul_kv.Connection(endpoint=endpoints[profile])
 
-  def get_all_keys(self):
-    allkeys = self.conn.get('tf_managed/media-gateway', recurse=True)
+  def get_all_keys(self, project_name):
+    print("getting all keys for: ", project_name)
+    target_path = "tf_managed/{0}".format(project_name)
+    allkeys = self.conn.get(target_path, recurse=True)
     return allkeys
 
   def get_key(self, project, key):
     connection_path = "tf_managed/{0}/{1}".format(project, key)
     specific_kv = self.conn.get(connection_path)
     return specific_kv
+
+  def __del__(self):
+    pass
