@@ -13,6 +13,7 @@ class ConsulHandler():
     # see terraform-configurations/aws_core_services/consul
     endpoints = {
       'dev-usa': 'http://consul.media.dev.usa.reachlocalservices.com:8500/v1/',
+      'qa-usa': 'http://consul.media.qa.usa.reachlocalservices.com:8500/v1/',
       'prod-gbr': 'https://consul-external.media.prod.gbr.reachlocalservices.com/v1/'
       }
     self.conn = consul_kv.Connection(endpoint=endpoints[profile])
