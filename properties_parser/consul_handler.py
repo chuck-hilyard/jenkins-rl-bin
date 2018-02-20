@@ -18,7 +18,8 @@ class ConsulHandler():
       'prod-can': 'https://consul-external.media.prod.can.reachlocalservices.com/v1/',
       'prod-gbr': 'https://consul-external.media.prod.gbr.reachlocalservices.com/v1/',
       'prod-eur': 'https://consul-external.media.prod.eur.reachlocalservices.com/v1/',
-      'prod-jpn': 'https://consul-external.media.prod.jpn.reachlocalservices.com/v1/'
+      'prod-jpn': 'https://consul-external.media.prod.jpn.reachlocalservices.com/v1/',
+      'prod-usa': 'https://consul-external.media.prod.usa.reachlocalservices.com/v1/'
       }
     self.conn = consul_kv.Connection(endpoint=endpoints[profile])
 
