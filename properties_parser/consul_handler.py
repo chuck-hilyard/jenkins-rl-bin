@@ -14,6 +14,7 @@ class ConsulHandler():
     endpoints = {
       'dev-usa': 'http://consul.media.dev.usa.reachlocalservices.com:8500/v1/',
       'qa-usa': 'http://consul.media.qa.usa.reachlocalservices.com:8500/v1/',
+      'qa-aus': 'http://consul.media.qa.aus.reachlocalservices.com:8500/v1/',
       'prod-aus': 'https://consul-external.media.prod.aus.reachlocalservices.com/v1/',
       'prod-can': 'https://consul-external.media.prod.can.reachlocalservices.com/v1/',
       'prod-gbr': 'https://consul-external.media.prod.gbr.reachlocalservices.com/v1/',
