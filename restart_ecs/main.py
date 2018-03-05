@@ -12,8 +12,7 @@ class Main():
 
   def run(self, region, profile):
     clustername = re.sub('deploy-', '', os.environ['JOB_NAME'])
-    #ch = consul_handler.ConsulHandler()
-    #region = ch.get_key("REGION")
+    print("CLUSTERNAME: ", clustername)
     ecs = restart_ecs.RestartEcs()
     containerids = ecs.get_ecs_containers(clustername, region, profile)
     ecs.restart_ecs_containers(clustername, containerids, region, profile)
