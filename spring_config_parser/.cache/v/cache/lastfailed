@@ -1,0 +1,3 @@
+{
+  "tests/test_argparse.py::test_quantity_of_args_passed_to_main": true
+}

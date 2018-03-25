@@ -1,0 +1,4 @@
+{
+  "test_main.py::test_cli_args": true,
+  "test_module_env.py": true
+}
