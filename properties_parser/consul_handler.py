@@ -30,6 +30,12 @@ class ConsulHandler():
     allkeys = self.conn.get(target_path, recurse=True)
     return allkeys
 
+  def get_common_keys(self, project_name):
+    print("getting common keys for: ", project_name)
+    target_path = "tf_managed/common"
+    common_keys = self.conn.get(target_path, recurse=True)
+    return common_keys
+
   def get_key(self, project, key):
     connection_path = "tf_managed/{0}/{1}".format(project, key)
     specific_kv = self.conn.get(connection_path)

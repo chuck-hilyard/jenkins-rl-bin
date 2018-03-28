@@ -18,12 +18,15 @@ class Main():
     ch = consul_handler.ConsulHandler(profile)
     project = re.sub('-build', '', os.environ['Job'])
     raw_kv = ch.get_all_keys(project)
+    common_keys = ch.get_common_keys(project)
 
     pf = key_formatter.KeyFormatter()
     formatted_keys = pf.format_keys(raw_kv, project)
+    formatted_common_keys = pf.format_common_keys(common_keys)
 
     pw = properties_writer.PropertiesWriter()
     pw.create_properties_file(formatted_keys)
+    pw.append_properties_file(formatted_common_keys)
 
     # future project (if we decide to add comments to the tickets)
     #credentials = credentials_handler.CredentialsHandler()

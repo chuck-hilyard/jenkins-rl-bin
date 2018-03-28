@@ -13,3 +13,12 @@ class KeyFormatter():
       new_key = re.sub(regex_string, '', raw_key)
       raw_key_dictionary[new_key] = raw_value
     return raw_key_dictionary
+
+  def format_common_keys(self, raw_kv):
+    raw_key_dictionary = {}
+    print("raw_kv.items: ", raw_kv.items)
+    for raw_key,raw_value in raw_kv.items():
+      regex_string = "^tf_managed\/common\/"
+      new_key = re.sub(regex_string, '', raw_key)
+      raw_key_dictionary[new_key] = raw_value
+    return raw_key_dictionary
