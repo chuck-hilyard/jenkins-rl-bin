@@ -14,7 +14,7 @@ class Main():
     print("Main.init")
 
   def __del__(self):
-    pass
+    print("Main.del")
 
   def validate_args(self):
     parser = argparse.ArgumentParser()
@@ -27,5 +27,5 @@ class Main():
 
 if __name__ == '__main__':
   main = Main()
-
+  main.validate_args()
 
