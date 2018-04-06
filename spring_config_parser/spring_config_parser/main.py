@@ -12,7 +12,7 @@ import sys
 class Main():
 
   def __init__(self):
-    print("Main.init")
+    print("Main.init\n")
     self.arg_parse()
 
   def __del__(self):
@@ -28,6 +28,8 @@ class Main():
   def validate_project_arg(self):
     project = sys.argv[1]
     state = False
+    # load available projects from a config_loader
+    # compare the user supplied project value to those in the config_loader
     return state
 
 
