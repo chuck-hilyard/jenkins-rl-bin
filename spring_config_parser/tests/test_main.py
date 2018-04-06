@@ -4,6 +4,7 @@ import sys
 from spring_config_parser import main
 
 
+
 def test_pass_no_cli_args():
   '''ensure we get a help message when no args are passed'''
   with pytest.raises(SystemExit) as e:

@@ -6,6 +6,7 @@
 
 import argparse
 import sys
+import config_loader
 
 
 
@@ -29,10 +30,12 @@ class Main():
     project = sys.argv[1]
     state = False
     # load available projects from a config_loader
+    config = config_loader.ConfigLoader()
     # compare the user supplied project value to those in the config_loader
     return state
 
 
 if __name__ == '__main__':
   main = Main()
+  main.validate_project_arg()
 

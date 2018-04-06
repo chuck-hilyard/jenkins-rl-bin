@@ -1,6 +1,6 @@
 
 default :
-	main/main.py
+	spring_config_parser/main.py
 
 test :
 	/usr/bin/env python3 -m pytest tests/ 

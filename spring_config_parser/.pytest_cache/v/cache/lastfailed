@@ -2,5 +2,6 @@
   "tests/test_argparse.py": true,
   "tests/test_argparse.py::test_instantiate_main": true,
   "tests/test_argparse.py::test_quantity_of_args_passed_to_main": true,
+  "tests/test_main.py": true,
   "tests/test_main.py::test_no_args_returns_help": true
 }
