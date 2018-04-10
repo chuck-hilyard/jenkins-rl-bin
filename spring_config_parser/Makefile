@@ -1,7 +1,10 @@
+.PHONY: tests
 
 default :
-	spring_config_parser/main.py
+	/usr/bin/env python3 -m app.main -h
 
-test :
-	/usr/bin/env python3 -m pytest tests/ 
+run :
+	/usr/bin/env python3 -m app.main a b c
 
+tests :
+	/usr/bin/env python3 -m pytest

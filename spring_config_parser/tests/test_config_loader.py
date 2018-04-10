@@ -1,8 +1,8 @@
 
 import pytest
-from spring_config_parser import config_loader
+from app.config_loader import ConfigLoader
 
 def test_instantiate_config_loader():
     '''init should read in the config.ini file successfully'''
-    config = config_loader.ConfigLoader()
-    assert config == isinstance(config_loader.ConfigLoader)
+    config = ConfigLoader()
+    assert isinstance(config, ConfigLoader) == True

@@ -1,7 +1,4 @@
 {
-  "test_config_loader.py": true,
-  "test_config_loader.py::test_instantiate_config_loader": true,
-  "test_main.py": true,
   "test_main.py::test_cli_args": true,
   "test_main.py::test_no_args_returns_help": true,
   "test_main.py::test_pass_bad_args": true,

@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-#
 # curl http://config-server.media.dev.usa.reachlocalservices.com:8080/media-core-gateway/sandbox/usa
 #
 
 import argparse
 import sys
-import config_loader
-
+import app.config_loader as config_loader
 
 
 class Main():

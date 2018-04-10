@@ -1,1 +1,3 @@
-{}
+{
+  "tests/test_main.py::test_validate_arg_syntax": true
+}
