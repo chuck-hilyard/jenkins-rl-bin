@@ -1,4 +1,4 @@
-.PHONY: tests
+.PHONY: tests help
 
 default :
 	/usr/bin/env python3 -m app.main -h
@@ -8,3 +8,6 @@ run :
 
 tests :
 	/usr/bin/env python3 -m pytest
+
+help :
+	cat README.md

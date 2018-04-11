@@ -25,12 +25,9 @@ class Main():
     parser.parse_args()
 
   def validate_project_arg(self):
-    project = sys.argv[1]
-    state = False
-    # load available projects from a config_loader
+    project_val = sys.argv[1]
     config = config_loader.ConfigLoader()
-    # compare the user supplied project value to those in the config_loader
-    return state
+    return config.validate("projects", project_val)
 
 
 if __name__ == '__main__':
