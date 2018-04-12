@@ -30,7 +30,6 @@ class ConfigLoader():
         print("ConfigLoader.del")
 
     def validate(self, arg_type, arg_value):
-        print("validating \"{}\" arg of {}".format(arg_type, arg_value))
-        print("__parser is a ", type(self.__parser))
-        return self.__parser[arg_type][arg_value]
+        state = self.__parser[arg_type][arg_value]
+        return state
 
