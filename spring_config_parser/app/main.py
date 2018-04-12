@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# curl http://config-server.media.dev.usa.reachlocalservices.com:8080/media-core-gateway/sandbox/usa
-#
 
 import argparse
 import sys
@@ -29,9 +27,20 @@ class Main():
     config = config_loader.ConfigLoader()
     return config.validate("projects", project_val)
 
+  def validate_environment_arg(self):
+    project_val = sys.argv[2]
+    config = config_loader.ConfigLoader()
+    return config.validate("environments", project_val)
+
+  def validate_platform_arg(self):
+    project_val = sys.argv[3]
+    config = config_loader.ConfigLoader()
+    return config.validate("platforms", project_val)
+
 
 if __name__ == '__main__':
   main = Main()
   main.validate_project_arg()
-
+  main.validate_environment_arg()
+  main.validate_platform_arg()
 
