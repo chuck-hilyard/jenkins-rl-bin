@@ -1,0 +1,8 @@
+{
+  "tests/test_argparse.py": true,
+  "tests/test_argparse.py::test_instantiate_main": true,
+  "tests/test_argparse.py::test_quantity_of_args_passed_to_main": true,
+  "tests/test_config_loader.py::test_pass_bad_project_arg_to_config_loader": true,
+  "tests/test_main.py::test_no_args_returns_help": true,
+  "tests/test_main.py::test_validate_arg_syntax": true
+}
