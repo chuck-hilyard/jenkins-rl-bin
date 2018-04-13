@@ -8,4 +8,6 @@ def test_spring_reader_instantiation():
     assert isinstance(reader, SpringReader)
 
 
-def test
+def test_spring_reader_request(httpserver):
+    httpserver.serve_content(open('cached-content.html').read())
+    assert httpserver.code == 200

@@ -1,6 +1,12 @@
 {
+  "test_config_loader.py::test_instantiate_config_loader": true,
+  "test_config_loader.py::test_pass_bad_environment_arg_to_config_loader": true,
+  "test_config_loader.py::test_pass_bad_platform_arg_to_config_loader": true,
+  "test_config_loader.py::test_pass_bad_project_arg_to_config_loader": true,
+  "test_config_loader.py::test_pass_good_project_arg_to_config_loader": true,
   "test_main.py::test_cli_args": true,
   "test_main.py::test_no_args_returns_help": true,
   "test_main.py::test_pass_bad_args": true,
-  "test_module_env.py": true
+  "test_module_env.py": true,
+  "test_spring_reader.py::test_spring_reader_instantiation": true
 }
