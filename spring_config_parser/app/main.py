@@ -4,6 +4,8 @@
 import argparse
 import app.config_loader as config_loader
 import app.spring_reader as spring_reader
+import app.spring_results_formatter as spring_results_formatter
+import app.property_writer as property_writer
 
 
 class Main():
@@ -27,4 +29,6 @@ if __name__ == '__main__':
     main = Main()
     config = config_loader.ConfigLoader()
     spring_reader = spring_reader.SpringReader(config)
+    formatted_results = spring_results_formatter.SpringResultsFormatter(spring_reader.results, config.output_type)
+    property_writer.PropertyWriter(formatted_results.formatted_results)
 

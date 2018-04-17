@@ -19,7 +19,8 @@ class ConfigLoader():
         project_val = sys.argv[1]
         environment_val = sys.argv[2]
         platform_val = sys.argv[3]
-        self.project = self.__validate_arg("projects", project_val)
+        self.project = project_val
+        self.output_type = self.__validate_arg("projects", project_val)
         self.environment = self.__validate_arg("environments", environment_val)
         self.platform = self.__validate_arg("platforms", platform_val)
         springendpoints_key = "{}-{}".format(self.environment, self.platform)
