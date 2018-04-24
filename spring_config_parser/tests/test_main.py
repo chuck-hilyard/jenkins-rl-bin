@@ -4,7 +4,6 @@ import sys
 from app.main import Main
 
 
-
 def test_pass_no_cli_args():
   '''ensure we get a help message when no args are passed'''
   with pytest.raises(SystemExit) as e:
