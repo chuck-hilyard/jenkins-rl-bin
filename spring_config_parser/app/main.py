@@ -5,17 +5,18 @@ import argparse
 import app.config_loader as config_loader
 import app.spring_reader as spring_reader
 import app.spring_results_formatter as spring_results_formatter
-import app.property_writer as property_writer
+import app.spring_results_writer as spring_results_writer
+import app.properties_kv_writer as properties_kv_writer
 
 
 class Main():
 
   def __init__(self):
-      print("Main.init\n")
+      print("Main.init")
       self.arg_parse()
 
   def __del__(self):
-      print("Main.del\n")
+      print("Main.del")
 
   def arg_parse(self):
       parser = argparse.ArgumentParser()
@@ -30,5 +31,11 @@ if __name__ == '__main__':
     config = config_loader.ConfigLoader()
     spring_reader = spring_reader.SpringReader(config)
     formatted_results = spring_results_formatter.SpringResultsFormatter(spring_reader.results, config.output_type)
-    property_writer.PropertyWriter(formatted_results.formatted_results)
+
+    print("formatted results ", formatted_results)
+    if config.output_type == 'properties_kv':
+        properties_kv_writer.PropertiesKVWriter(formatted_results)
+    else:
+        print("fail")
+
 
