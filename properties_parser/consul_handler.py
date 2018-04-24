@@ -13,8 +13,12 @@ class ConsulHandler():
     # see terraform-configurations/aws_core_services/consul
     endpoints = {
       'dev-usa': 'http://consul.media.dev.usa.reachlocalservices.com:8500/v1/',
-      'qa-usa': 'http://consul.media.qa.usa.reachlocalservices.com:8500/v1/',
       'qa-aus': 'http://consul.media.qa.aus.reachlocalservices.com:8500/v1/',
+      'qa-can': 'http://consul.media.qa.can.reachlocalservices.com:8500/v1/',
+      'qa-eur': 'http://consul.media.qa.eur.reachlocalservices.com:8500/v1/',
+      'qa-gbr': 'http://consul.media.qa.gbr.reachlocalservices.com:8500/v1/',
+      'qa-jpn': 'http://consul.media.qa.jpn.reachlocalservices.com:8500/v1/',
+      'qa-usa': 'http://consul.media.qa.usa.reachlocalservices.com:8500/v1/',
       'prod-aus': 'https://consul-external.media.prod.aus.reachlocalservices.com/v1/',
       'prod-can': 'https://consul-external.media.prod.can.reachlocalservices.com/v1/',
       'prod-gbr': 'https://consul-external.media.prod.gbr.reachlocalservices.com/v1/',
