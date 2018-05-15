@@ -34,7 +34,8 @@ class JiraHandler():
     print("matching CMR to Jenkins BUILD")
     issue = jira_conn.issue(cmr_number)
     description = issue.fields.description
-    search_string = r"^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/{0}\/{1}".format(Job, BUILD_NUMBER)
+    #search_string = r"^BUILD:\shttps:\/\/\S*\/view\/\S*\/job\/{0}\/{1}".format(Job, BUILD_NUMBER)
+    search_string = r"https:\/\/\S*\/view\/\S*\/job\/{0}\/{1}".format(Job, BUILD_NUMBER)
     match = re.search(search_string, description)
     if match is None:
       print("no matching BUILD: string found in {0}".format(cmr_number))
