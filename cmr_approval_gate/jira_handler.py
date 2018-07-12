@@ -21,7 +21,7 @@ class JiraHandler():
 
   def find_approved_cmr(self, jira_conn, cmr_number):
     print("searching JIRA for {0}...".format(cmr_number))
-    JQL = "project = CMR AND statuc = In Progress OR status = CAB-APPROVED  AND key = {0} AND component = Media".format(cmr_number)
+    JQL = "project = CMR AND status = \"In Progress\" OR status = CAB-APPROVED  AND key = {0} AND component = Media".format(cmr_number)
     issue = jira_conn.search_issues(JQL)
     if len(issue) > 0:
       print("found CMR")
