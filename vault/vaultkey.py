@@ -27,7 +27,7 @@ def get(key_type):
   jsonstr = json.loads(response.text)
   string = jsonstr['data']['key']
   print(string)
-  fw = open('id_rsa', 'w')
+  fw = open(outfile, 'w')
   fw.write(string)
   fw.close()
 
@@ -48,4 +48,5 @@ if __name__ == '__main__':
   key_type    = sys.argv[2] # { cert, aws, pem }
   environment = sys.argv[3] # { dev, qa, stg, prod }
   platform    = sys.argv[4] # { aus, can, eur, gbr, jpn, usa }
+  outfile     = sys.argv[5] # the file you need to create with path (relative or absolute)
   main(action, key_type)
