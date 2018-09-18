@@ -4,13 +4,10 @@
 # curl -k -v --header "X-Vault-Token:7da38c81-6bcb-7639-05cd-2f48b952ce13" --request POST --data @docker-build-jenkins-private-key.json https://10.233.136.68:8200/v1/secret/data/${env}/${platform}/cert/jenkins
 # curl -k -v --header "X-Vault-Token:7da38c81-6bcb-7639-05cd-2f48b952ce13" --request DELETE https://10.233.136.68:8200/v1/secret/data/${env}/${platform}/cert/jenkins
 
-import base64
-import hvac
 import json
 import os
 import requests
 import sys
-import difflib
 
 VAULTKEY = os.environ['VAULTKEY']
 
