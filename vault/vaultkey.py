@@ -14,7 +14,7 @@ VAULTKEY = os.environ['VAULTKEY']
 def create(key_type):
   headers = {'X-Vault-Token': VAULTKEY }
   url     = "https://10.233.136.68:8200/v1/secret/data/{env}/{platform}/{key_type}/jenkins".format(env=environment, platform=platform, key_type=key_type)
-  file = open('jenkins-agent-private-key.pem', 'r')
+  file = open(thefile, 'r')
   string = file.read()
   json_formatted = json.dumps( { 'key': string } )
   response = requests.post(url, headers=headers, data=json_formatted, verify=False)
@@ -27,7 +27,7 @@ def get(key_type):
   jsonstr = json.loads(response.text)
   string = jsonstr['data']['key']
   print(string)
-  fw = open(outfile, 'w')
+  fw = open(thefile, 'w')
   fw.write(string)
   fw.close()
 
@@ -48,5 +48,5 @@ if __name__ == '__main__':
   key_type    = sys.argv[2] # { cert, aws, pem }
   environment = sys.argv[3] # { dev, qa, stg, prod }
   platform    = sys.argv[4] # { aus, can, eur, gbr, jpn, usa }
-  outfile     = sys.argv[5] # the file you need to create with path (relative or absolute)
+  thefile        = sys.argv[5] # (absolute or relative path) used as a source or destination (depends on action)
   main(action, key_type)
