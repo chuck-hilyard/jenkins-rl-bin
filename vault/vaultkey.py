@@ -26,7 +26,6 @@ def get(key_type):
   response = requests.get(url, headers=headers, verify=False)
   jsonstr = json.loads(response.text)
   string = jsonstr['data']['key']
-  print(string)
   fw = open(thefile, 'w')
   fw.write(string)
   fw.close()
