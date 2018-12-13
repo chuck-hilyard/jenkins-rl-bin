@@ -3,6 +3,7 @@
 import cmr_approval_gate
 import jira_handler
 import credentials_handler
+import vault
 
 
 class Main():
@@ -19,6 +20,7 @@ class Main():
     # future project (if we decide to add comments to the tickets)
     #credentials = credentials_handler.CredentialsHandler()
     #password = credentials.get_password()
+    vault = vault.Vault()
     username = 'anonymous'
     password = 'anonymous'
 
