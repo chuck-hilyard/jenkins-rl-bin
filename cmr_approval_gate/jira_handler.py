@@ -11,8 +11,6 @@ class JiraHandler():
   def create_connection(self, username, password):
     print("connecting to https://tickets.reachlocal.com")
     options = { 'server': 'https://tickets.reachlocal.com'}
-    username = "chuck.hilyard"
-    password = "Greatkitten99"
     try:
       #if we decide to add comments to the tickets we'll need to auth
       jira_conn_authd = JIRA(options, basic_auth=(username, password))

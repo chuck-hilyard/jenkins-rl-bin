@@ -17,12 +17,9 @@ class Main():
     cmr.output()
     deploy_url = cmr.get_deploy_url()
 
-    # future project (if we decide to add comments to the tickets)
-    #credentials = credentials_handler.CredentialsHandler()
-    #password = credentials.get_password()
-    vault = vault.Vault()
-    username = 'anonymous'
-    password = 'anonymous'
+    vlt = vault.Vault()
+    username = vlt.username
+    password = vlt.password
 
     jira = jira_handler.JiraHandler()
     jira_conn = jira.create_connection(username, password)
