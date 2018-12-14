@@ -13,8 +13,8 @@ class JiraHandler():
     options = { 'server': 'https://tickets.reachlocal.com'}
     try:
       #if we decide to add comments to the tickets we'll need to auth
-      #jira_conn_authd = JIRA(options, basic_auth=(username, password))
-      jira_conn_authd = JIRA(options)
+      jira_conn_authd = JIRA(options, basic_auth=(username, password))
+      #jira_conn_authd = JIRA(options)
       return jira_conn_authd
     except:
       print("unexpected error, connection to jira failed")
