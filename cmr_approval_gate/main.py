@@ -4,6 +4,7 @@ import cmr_approval_gate
 import jira_handler
 import credentials_handler
 import vault
+import consul
 
 
 class Main():
@@ -17,7 +18,10 @@ class Main():
     cmr.output()
     deploy_url = cmr.get_deploy_url()
 
-    vlt = vault.Vault()
+    cnsl = consul.Consul()
+    role_id = cnsl.get_role_id()
+
+    vlt = vault.Vault(role_id)
     username = vlt.username
     password = vlt.password
 
