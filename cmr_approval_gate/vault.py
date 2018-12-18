@@ -8,18 +8,16 @@ import os
 
 class Vault():
 
-  role_id = os.environ['role_id']
-  secret_id = os.environ['secret_id']
   vault_url = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200"
 
-  def __init__(self):
+  def __init__(self, role_id):
     print("Vault()")
-    self.client = hvac.Client(url=Vault.vault_url)
+    self.role_id = role_id
     self.set_client_token()
     self.set_credentials()
 
   def set_credentials(self):
-    path = "/v1/secret/data/jenkins"
+    path = "/v1/secret/data/jenkinsb"
     vault_url = "{}{}".format(Vault.vault_url, path)
     headers = { "X-Vault-Token": self.client_token }
     response = requests.get(vault_url, headers=headers)
@@ -28,7 +26,7 @@ class Vault():
     self.password = response_json['data']['password']
 
   def set_client_token(self):
-    auth_payload = { "role_id": Vault.role_id, "secret_id": Vault.secret_id }
+    auth_payload = { "role_id": self.role_id }
     path = "/v1/auth/approle/login"
     vault_url = "{}{}".format(Vault.vault_url, path)
     response = requests.post(vault_url, data=json.dumps(auth_payload))
