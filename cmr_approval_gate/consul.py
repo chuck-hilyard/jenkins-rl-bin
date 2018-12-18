@@ -11,7 +11,6 @@ class Consul():
     target_path = "base-camp-vault/config/role_id"
     try:
       raw_target_path = conn.get(target_path)
-      print("raw target path: ", raw_target_path)
       role_id = raw_target_path['base-camp-vault/config/role_id']
       return role_id
     except:
