@@ -11,7 +11,7 @@ VAULTKEY = os.environ['VAULTKEY']
 
 def create(key_type):
   headers = {'X-Vault-Token': VAULTKEY }
-  url     = "https://10.233.137.172:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
+  url     = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
   file = open(thefile, 'r')
   string = file.read()
   json_formatted = json.dumps( { 'key': string } )
@@ -20,7 +20,7 @@ def create(key_type):
 
 def get(key_type):
   headers = {'X-Vault-Token': VAULTKEY }
-  url     = "https://10.233.137.172:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
+  url     = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
   response = requests.get(url, headers=headers, verify=False)
   jsonstr = json.loads(response.text)
   string = jsonstr['data']['key']
