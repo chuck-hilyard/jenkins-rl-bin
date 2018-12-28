@@ -6,6 +6,7 @@ import json
 import os
 import requests
 import sys
+import urllib3
 
 VAULTKEY = os.environ['VAULTKEY']
 
@@ -19,6 +20,7 @@ def create(key_type):
   print(response.status_code)
 
 def get(key_type):
+  urllib3.disable_warnings()
   headers = {'X-Vault-Token': VAULTKEY }
   url     = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
   response = requests.get(url, headers=headers, verify=False)
