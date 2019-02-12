@@ -1,0 +1,7 @@
+{
+    "editor.autoIndent": false,
+    "python.linting.pylintEnabled": true,
+    "editor.detectIndentation": false,
+    "editor.renderIndentGuides": false,
+    "editor.wrappingIndent": "none"
+}
