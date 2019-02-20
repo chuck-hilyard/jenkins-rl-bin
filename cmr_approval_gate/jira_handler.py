@@ -9,8 +9,9 @@ class JiraHandler():
     print("JiraHandler()")
 
   def create_connection(self, username, password):
-    print("connecting to https://tickets.reachlocal.com")
-    options = { 'server': 'https://tickets.reachlocal.com'}
+    # TODO: https://jira.gannett.com
+    print("connecting to https://jira.gannett.com")
+    options = { 'server': 'https://jira.gannett.com'}
     try:
       #if we decide to add comments to the tickets we'll need to auth
       jira_conn_authd = JIRA(options, basic_auth=(username, password))
