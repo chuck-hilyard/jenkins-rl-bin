@@ -1,0 +1,9 @@
+# source this file and run main.py
+export BUILD_DISPLAY_NAME="media-search-etl"
+export BUILD_URL="https://jenkins.media.dev.usa.reachlocalservices.com/view/media-search-etl/job/media-search-etl-build/15/"
+export RUN_DISPLAY_URL=""
+export JOB_NAME="media-search-etl-deploy-prod-aus"
+export JIRA_CMR="CMR-4232"
+export Job="media-search-etl-deploy-prod-aus"
+export BUILD_DISPLAY_NAME="media-search-etl"
+export BuildSelection="<SpecificBuildSelector><buildNumber>70</buildNumber></SpecificBuildSelector>"
