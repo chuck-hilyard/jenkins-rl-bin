@@ -20,8 +20,9 @@ class Main():
 
     cnsl = consul.Consul()
     role_id = cnsl.get_role_id()
+    secret_id = cnsl.get_secret_id()
 
-    vlt = vault.Vault(role_id)
+    vlt = vault.Vault(role_id, secret_id)
     username = vlt.username
     password = vlt.password
 
@@ -29,7 +30,6 @@ class Main():
     jira_conn = jira.create_connection(username, password)
     jira.find_approved_cmr(jira_conn, cmr_number)
     jira.match_build_string_from_cmr(jira_conn, cmr_number, Job, BUILD_NUMBER)
-    #jira.add_comment_to_approved_cmr(jira_conn, cmr_number, deploy_url)
 
 
 if __name__ == '__main__':
