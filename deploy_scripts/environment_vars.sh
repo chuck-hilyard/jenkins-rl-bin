@@ -11,7 +11,7 @@ VARS_FILE="${WORKSPACE}/deploy_environment_vars.txt"
 echo "PROJECT=${PROJECT}" >> $VARS_FILE
 for key in $keys
   do
-    value=$(curl -s http://consul.${ENV_DOT_PLAT}.media.reachlocalservices.com:8500/v1/kv/${key}?raw)
+    value=$(curl -s https://consul-jenkins.${ENV_DOT_PLAT}.media.reachlocalservices.com/v1/kv/${key}?raw)
     raw_key=$(echo ${key} |sed 's/'$PROJECT'\/config\///g')
     kv="${raw_key}=${value}"
     echo ${kv} >> $VARS_FILE
