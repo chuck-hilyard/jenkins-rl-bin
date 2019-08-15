@@ -42,16 +42,13 @@ def json_cleanup(json_response):
   for index in json_response:
     key_raw = index['Key']
     key = key_raw.rsplit(sep='/', maxsplit=1)[1]
-    # values in consul are encrypted in a recursive call must be called individually to get raw values
+    # values in consul are encrypted in a recursive call, each value must be called individually to get raw values
     value = get_raw_value_from_consul(key)
-    print("k:{} v:{}".format(key, value))
     kv[key] = value
   return kv
 
 def write_env_file(kv):
-  WORKSPACE = os.getenv['WORKSPACE']
-  envfile_str = "{}/deploy_environment_vars.txt".format(WORKSPACE)
-  envfile = open(envfile_str, 'w')
+  envfile = open('deploy_environment_vars.txt', 'w')
   for k,v in kv.items():
     envfile.write("{}={}\n".format(k,v))
   envfile.close()
