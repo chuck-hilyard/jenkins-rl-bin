@@ -1,0 +1,12 @@
+AWS_ACCOUNT_NUMBER=762858336698
+ENVIRONMENT=dev
+FQDN=dev.usa.media.reachlocalservices.com
+PLATFORM=usa
+REGION=us-west-2
+branch=latest
+deploy_type=standard
+ecr_image_digest=sha256:f344866fcc778de6ea241e7413fd36ab2f18ca538bc1ff3eb49b2c3419357862
+ecr_repo=google-mc-connector-dev-usa-media-reachlocalservices-com
+ecs_cluster=
+environment=dev
+github_repo=git@github.com:reachlocal/google-mc-connector.git

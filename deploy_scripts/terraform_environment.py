@@ -24,7 +24,6 @@ def get_raw_value_from_consul(key):
     print("something happened while retrieving k/v: {}".format(response.text))
     return None
 
-
 def validate_args():
   parser = argparse.ArgumentParser()
   parser.add_argument("PROJECT", help="e.g. \"google-mc-connector\"")
@@ -39,20 +38,28 @@ def validate_args():
   PLATFORM = args.PLATFORM
 
 def json_cleanup(json_response):
+  kv = {}
   for index in json_response:
     key_raw = index['Key']
     key = key_raw.rsplit(sep='/', maxsplit=1)[1]
     # values in consul are encrypted in a recursive call must be called individually to get raw values
     value = get_raw_value_from_consul(key)
     print("k:{} v:{}".format(key, value))
-    os.environ[key] = value
+    kv[key] = value
+  return kv
 
+def write_env_file(kv):
+  envfile = open('deploy_environment_vars.txt', 'w')
+  for k,v in kv.items():
+    envfile.write("{}={}\n".format(k,v))
+  envfile.close()
 
 
 def main():
   validate_args()
   json_response = get_config_from_consul()
-  json_cleanup(json_response)
+  kv = json_cleanup(json_response)
+  write_env_file(kv)
 
 if __name__ == '__main__':
   main()
