@@ -44,7 +44,7 @@ def json_cleanup(json_response):
     key = key_raw.rsplit(sep='/', maxsplit=1)[1]
     # values in consul are encrypted in a recursive call must be called individually to get raw values
     value = get_raw_value_from_consul(key)
-    #print("k:{} v:{}".format(key, value))
+    print("k:{} v:{}".format(key, value))
     os.environ[key] = value
 
 
