@@ -49,6 +49,7 @@ def json_cleanup(json_response):
 
 def write_env_file(kv):
   envfile = open('deploy_environment_vars.txt', 'w')
+  envfile.write("PROJECT={}\n".format(PROJECT))
   for k,v in kv.items():
     envfile.write("{}={}\n".format(k,v))
   envfile.close()
