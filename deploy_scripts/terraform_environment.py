@@ -49,7 +49,7 @@ def json_cleanup(json_response):
   return kv
 
 def write_env_file(kv):
-  WORKSPACE = os.environ['WORKSPACE']
+  WORKSPACE = os.getenv['WORKSPACE']
   envfile_str = "{}/deploy_environment_vars.txt".format(WORKSPACE)
   envfile = open(envfile_str, 'w')
   for k,v in kv.items():
