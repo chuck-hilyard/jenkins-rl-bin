@@ -12,7 +12,7 @@ def get_config_from_consul():
   try:
     response = requests.get(url, timeout=5.0)
   except:
-    #print("an exception occurred: ", sys.exc_info()[0])
+    print("an exception occurred: ", sys.exc_info()[0])
     raise
     sys.exit(1)
   if response.status_code == 200:
