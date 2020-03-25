@@ -8,7 +8,11 @@ import os
 
 def get_config_from_consul():
   url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
-  response = requests.get(url, timeout=5.0)
+  try:
+    response = requests.get(url, timeout=5.0)
+  except:
+    print("an exception occurred: ", sys.exc_info()[0])
+    raise
   if response.status_code == 200:
     return response.json()
   else:
