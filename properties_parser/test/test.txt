@@ -1,0 +1,9 @@
+# source this file and run main.py
+export BUILD_DISPLAY_NAME="local-service-ads"
+export BUILD_URL="https://jenkins.media.dev.usa.reachlocalservices.com/view/callcap-connector/job/callcap-connector-build/8/"
+export RUN_DISPLAY_URL=""
+export JOB_NAME="local-service-ads-deploy-prod-usa"
+export JIRA_CMR="CMR-4913"
+export Job="local-service-ads-deploy-prod-usa"
+export BUILD_DISPLAY_NAME="local-service-ads"
+export BuildSelection="<SpecificBuildSelector><buildNumber>1715</buildNumber></SpecificBuildSelector>"
