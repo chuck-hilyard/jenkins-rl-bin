@@ -5,6 +5,7 @@ import requests
 import json
 import re
 import os
+import sys
 
 def get_config_from_consul():
   url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
@@ -13,11 +14,12 @@ def get_config_from_consul():
   except:
     print("an exception occurred: ", sys.exc_info()[0])
     raise
+    sys.exit(1)
   if response.status_code == 200:
     return response.json()
   else:
     print(response.raise_for_status())
-    sys.exit()
+    sys.exit(1)
 
 def get_raw_value_from_consul(key):
   url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config/{}?raw".format(ENVIRONMENT, PLATFORM, PROJECT, key)
