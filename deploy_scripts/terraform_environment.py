@@ -5,18 +5,24 @@ import requests
 import json
 import re
 import os
+import sys
 
 def get_config_from_consul():
-  url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
-  response = requests.get(url, timeout=5.0)
+  url = "https://consul-jenkins{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
+  try:
+    response = requests.get(url, timeout=5.0)
+  except:
+    #print("an exception occurred: ", sys.exc_info()[0])
+    raise
+    sys.exit(1)
   if response.status_code == 200:
     return response.json()
   else:
     print(response.raise_for_status())
-    sys.exit()
+    sys.exit(1)
 
 def get_raw_value_from_consul(key):
-  url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config/{}?raw".format(ENVIRONMENT, PLATFORM, PROJECT, key)
+  url = "https://consul-jenkins{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
   response = requests.get(url, timeout=5.0)
   if response.status_code == 200:
     return response.text
@@ -27,10 +33,14 @@ def get_raw_value_from_consul(key):
 def validate_args():
   parser = argparse.ArgumentParser()
   parser.add_argument("PROJECT", help="e.g. \"google-mc-connector\"")
+  parser.add_argument("--subdomain", help="e.g. \"admctr2\"")
   parser.add_argument("ENVIRONMENT", help="e.g. \"dev\"")
   parser.add_argument("PLATFORM", help="e.g. \"usa\"")
   args = parser.parse_args()
   global PROJECT
+  if args.subdomain:
+    global SUBDOMAIN
+    SUBDOMAIN = ".{}".format(args.subdomain)
   global ENVIRONMENT
   global PLATFORM
   PROJECT = args.PROJECT
