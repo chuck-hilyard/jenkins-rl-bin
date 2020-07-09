@@ -8,7 +8,10 @@ import os
 import sys
 
 def get_config_from_consul():
-  url = "https://consul-jenkins{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
+  if SUBDOMAIN:
+    url = "https://consul-jenkins.{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
+  else:
+    url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
   try:
     response = requests.get(url, timeout=5.0)
   except:
@@ -22,7 +25,10 @@ def get_config_from_consul():
     sys.exit(1)
 
 def get_raw_value_from_consul(key):
-  url = "https://consul-jenkins{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
+  if SUBDOMAIN:
+    url = "https://consul-jenkins.{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
+  else:
+    url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
   response = requests.get(url, timeout=5.0)
   if response.status_code == 200:
     return response.text
@@ -38,11 +44,10 @@ def validate_args():
   parser.add_argument("PLATFORM", help="e.g. \"usa\"")
   args = parser.parse_args()
   global PROJECT
-  if args.subdomain:
-    global SUBDOMAIN
-    SUBDOMAIN = ".{}".format(args.subdomain)
+  global SUBDOMAIN
   global ENVIRONMENT
   global PLATFORM
+  SUBDOMAIN = args.subdomain
   PROJECT = args.PROJECT
   ENVIRONMENT = args.ENVIRONMENT
   PLATFORM = args.PLATFORM
