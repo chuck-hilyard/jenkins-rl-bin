@@ -8,11 +8,14 @@ import os
 import sys
 
 def get_config_from_consul():
-  url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
+  if SUBDOMAIN:
+    url = "https://consul-jenkins.{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT)
+  else:
+    url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config?recurse".format(ENVIRONMENT, PLATFORM, PROJECT)
   try:
     response = requests.get(url, timeout=5.0)
   except:
-    print("an exception occurred: ", sys.exc_info()[0])
+    #print("an exception occurred: ", sys.exc_info()[0])
     raise
     sys.exit(1)
   if response.status_code == 200:
@@ -22,7 +25,10 @@ def get_config_from_consul():
     sys.exit(1)
 
 def get_raw_value_from_consul(key):
-  url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config/{}?raw".format(ENVIRONMENT, PLATFORM, PROJECT, key)
+  if SUBDOMAIN:
+    url = "https://consul-jenkins.{}.{}.{}.media.reachlocalservices.com/v1/kv/{}/config/{}?raw".format(SUBDOMAIN, ENVIRONMENT, PLATFORM, PROJECT, key)
+  else:
+    url = "https://consul-jenkins.{}.{}.media.reachlocalservices.com/v1/kv/{}/config/{}?raw".format(ENVIRONMENT, PLATFORM, PROJECT, key)
   response = requests.get(url, timeout=5.0)
   if response.status_code == 200:
     return response.text
@@ -33,12 +39,15 @@ def get_raw_value_from_consul(key):
 def validate_args():
   parser = argparse.ArgumentParser()
   parser.add_argument("PROJECT", help="e.g. \"google-mc-connector\"")
+  parser.add_argument("--subdomain", help="e.g. \"admctr2\"")
   parser.add_argument("ENVIRONMENT", help="e.g. \"dev\"")
   parser.add_argument("PLATFORM", help="e.g. \"usa\"")
   args = parser.parse_args()
   global PROJECT
+  global SUBDOMAIN
   global ENVIRONMENT
   global PLATFORM
+  SUBDOMAIN = args.subdomain
   PROJECT = args.PROJECT
   ENVIRONMENT = args.ENVIRONMENT
   PLATFORM = args.PLATFORM
@@ -49,7 +58,9 @@ def json_cleanup(json_response):
     key_raw = index['Key']
     key = key_raw.rsplit(sep='/', maxsplit=1)[1]
     # values in consul are encrypted in a recursive call, each value must be called individually to get raw values
+    print("key:", key)
     value = get_raw_value_from_consul(key)
+    print("value:", value)
     kv[key] = value
   return kv
 
