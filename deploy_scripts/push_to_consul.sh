@@ -10,6 +10,6 @@ while read line in
   do 
     key=$(echo ${line} |cut -f1 -d=)
     value=$(echo ${line} |cut -f2 -d=)
-    $(curl -s https://consul-jenkins.${ENV_DOT_PLAT}.media.reachlocalservices.com/v1/kv/${PROJECT}/configs/${key} --data "$(echo $value)")
+    $(curl -X PUT -s https://consul-jenkins.${ENV_DOT_PLAT}.media.reachlocalservices.com/v1/kv/${PROJECT}/config/${key} --data "$(echo $value)")
   done <$(echo ${VARS_FILE})
 
