@@ -7,7 +7,7 @@ import os
 
 class Vault():
 
-  vault_url = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200"
+  vault_url = "http://base-camp-vault-external.media.dev.usa.reachlocalservices.com:8200"
 
   def __init__(self, role_id, secret_id):
     print("Vault.init")
