@@ -7,7 +7,8 @@ import os
 
 class Vault():
 
-  vault_url = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200"
+  #vault_url = "http://base-camp-vault.media.dev.usa.reachlocalservices.com:8200"
+  vault_url = "https://vault-external.dev.usa.media.reachlocalservices.com:8200"
 
   def __init__(self, role_id, secret_id):
     print("Vault.init")
@@ -18,7 +19,8 @@ class Vault():
 
   def get_credentials(self):
     print("Vault.get_credentials")
-    path = "/v1/secret/data/jenkins"
+    #path = "/v1/secret/data/jenkins"
+    path = "/v1/secret/base-camp/cmr"
     vault_url = "{}{}".format(Vault.vault_url, path)
     headers = { "X-Vault-Token": self.client_token }
     response = requests.get(vault_url, headers=headers)
