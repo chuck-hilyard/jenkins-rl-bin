@@ -23,7 +23,9 @@ def get(key_type):
   # this is some wierd crap w/ py 3.6.5 on the jenkins docker build server *shrugs
   urllib3.disable_warnings()
   headers = {'X-Vault-Token': VAULTKEY }
-  url     = "https://base-camp-vault-external.media.dev.usa.reachlocalservices.com:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
+  #TODO: remove this after 06/2022
+  #url     = "https://base-camp-vault-external.media.dev.usa.reachlocalservices.com:8200/v1/secret/data/{env}/{platform}/{key_type}/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
+  url     = "https://vault-external.dev.usa.media.reachlocalservices.com:8200/v1/secret/base-camp/{unique_name}".format(env=environment, platform=platform, key_type=key_type, unique_name=unique_name)
   response = requests.get(url, headers=headers, verify=False)
   jsonstr = json.loads(response.text)
   string = jsonstr['data']['key']
